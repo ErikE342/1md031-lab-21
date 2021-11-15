@@ -40,7 +40,7 @@ else {
 
 const io = require('socket.io')(http, {cookie: false});
 
-// Store data in an object to keep the global namespace clean and 
+// Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {
   this.orders = {};

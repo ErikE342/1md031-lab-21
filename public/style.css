@@ -1,1 +1,67 @@
-/*empty*/
+/*@import "reset.css";*/
+@import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
+
+body {
+    font-family: "Droid Serif", sans-serif;
+    font-size: 12pt;
+}
+
+.allergi{
+  color: #ff5500;
+  text-transform: uppercase;
+}
+#burger-select{
+  background-color: black;
+  color: white;
+  border-style: dashed;
+  border-color: white;
+}
+#personal-info{
+  border-color: black;
+  border-style: dashed;
+}
+button:hover {
+   background-color: blue;
+   cursor: pointer;
+}
+button {
+  margin:0px 40px 0px 40px;
+}
+.headline{
+  margin:0px 40px 0px 40px;
+  overflow:hidden;
+}
+.foto{
+  opacity: 0.4;
+  height: 400px;
+  width: 95%;
+}
+headline, header{
+  position:absolute;
+}
+
+section {
+  margin:0px 40px 0px 40px;
+}
+
+#Burger{
+  margin: 20px;
+  padding:20px;
+}
+.headed{
+  margin-left:40px;
+}
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 200px 200px 200px;
+}
+.a{
+  grid-column: 1;
+}
+.b{
+  grid-column: 2;
+}
+.c{
+  grid-column: 3;
+}

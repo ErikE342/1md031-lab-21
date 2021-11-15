@@ -3,87 +3,68 @@
 <head>
     <title>Page title shown in window title</title>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<header>
+<img src="https://www.londonkoll.se/wp-content/uploads/2014/11/Pubar-London-1200x630px.jpg"class="headline foto">
+<header class="headline" style="margin-top:-300px;">
     <h1>Burgers Online</h1>
 </header>
-<nav> Main / side / Drink </nav>
 <main>
-    <section>
-        <h1>
+    <section id="burger-select">
+        <h1 class="headed">
             Select Burger
         </h1>
-        <div>
+        <div class="headed">
             all the selections
         </div>
-    </section>
-    <section>
-        <div style="float:left;">
-        <h1>
-            Fire Burger
-        </h1>
-        <img src="https://cdn-bk-se-ordering.azureedge.net/media/x0ljohbg/bk-kiosk-checkout-machine-400x290_singel_roasted_onion_singlebeef.png" alt="span" title="burger" style="width: 200px; clear:left">
-        <h4>Allergenes</h4>
-        <div>
-            <ul>
-                <li>Eggs</li>
-                <li>Gluten</li>
-                <li>Meat</li>
-            </ul>
-            <h4>Food info</h4>
-            <dl>
-                <dt>Bun</dt>
-                <dd>Leaves and seeds </dd>
-                <dt>Cheese</dt>
-                <dd>Mould cheese</dd>
-            </dl>
-        </div>
-        </div>
-        <div style="float:left;">
+        <div class="wrapper">
+          <div class="box a">
             <h1>
-                Blue Burger
+              Fire Burger
             </h1>
-            <img src="https://www.max.se/globalassets/images/burgers/burgers-frisco-burger.png?width=1160&height=652" alt="span" title="burger" style="width: 250px;">
+            <img src="https://cdn-bk-se-ordering.azureedge.net/media/x0ljohbg/bk-kiosk-checkout-machine-400x290_singel_roasted_onion_singlebeef.png" alt="span" title="burger" style="width: 200px">
             <h4>Allergenes</h4>
             <div>
-                <ul>
-                    <li>Eggs</li>
-                    <li>Gluten</li>
-                    <li>Meat</li>
-                </ul>
-                <h4>Food info</h4>
-                <dl>
-                    <dt>Bun</dt>
-                    <dd>Leaves and seeds </dd>
-                    <dt>Cheese</dt>
-                    <dd>a hint of cheddar</dd>
-                </dl>
+              <ul class="allergi">
+                  <li>Eggs</li>
+                  <li>Gluten</li>
+                  <li>Meat</li>
+              </ul>
             </div>
-        </div>
-        <div style="float:left;">
+          </div>
+          <div class="box b">
+              <h1>
+                  Blue Burger
+                </h1>
+                <img src="https://www.max.se/globalassets/images/burgers/burgers-frisco-burger.png?width=1160&height=652" alt="span" title="burger" style="width: 200px;">
+                <h4>Allergenes</h4>
+                <div>
+                  <ul class="allergi">
+                      <li>Eggs</li>
+                      <li>Gluten</li>
+                      <li>Meat</li>
+                  </ul>
+                </div>
+          </div>
+        <div class="box c">
             <h1>
                 Green Burger
             </h1>
             <img src="https://www.santamariaworld.com/optimized/maximum/globalassets/_recipes/bbq/kentucky_burger.jpg" alt="span" title="burger" style="width: 200px;"/>
             <h4>Allergenes</h4>
             <div>
-                <ul>
+                <ul class="allergi">
                     <li>Eggs</li>
                     <li>Gluten</li>
                     <li>Veggies</li>
                 </ul>
-                <h4>Food info</h4>
-                <dl>
-                    <dt>Bun</dt>
-                    <dd>Leaves and seeds </dd>
-                    <dt>Cheese</dt>
-                    <dd>a hint of cheddar</dd>
-                </dl>
             </div>
         </div>
+      </div>
     </section>
-    <section style="clear:left;">
+
+    <section style="clear:left;" id="personal-info">
         <h2>
             Customer Information
         </h2>
