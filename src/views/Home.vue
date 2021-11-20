@@ -1,5 +1,5 @@
 <template>
-  <img src="https://www.londonkoll.se/wp-content/uploads/2014/11/Pubar-London-1200x630px.jpg" class="headline foto">
+  <img src="https://www.londonkoll.se/wp-content/uploads/2014/11/Pubar-London-1200x630px.jpg" class="headline foto" alt="pub">
   <header class="headline" style="margin-top:-300px;">
     <h1>Burgers Online</h1>
   </header>
@@ -16,7 +16,7 @@
           <Burger v-for="burger in burgers"
                   v-bind:burger="burger"
                   v-bind:key="burger.name"
-                  v-on:orderedBurgers="addToOrder($event)"/>
+                  v-on:orderedBurger="addToOrder($event)"/>
 
       </div>
     </section>
@@ -37,20 +37,11 @@
         {{fn}}
       </p>
       <p>
-        <label for="Street">Name</label><br>
-        <input type="text" id="Street" v-model="ln" placeholder="Street Name">
-        {{ln}}
-      </p>
-      <p>
-        <label for="Street">Mail</label><br>
+        <label for="email">Mail</label><br>
         <input type="email" id="email" v-model="em" required="required" placeholder="E-mail address">
         {{em}}
       </p>
-      <p>
-        <label for="Adress">Number</label><br>
-        <input type="number" id="Adress" v-model="Nm" required="required" placeholder="address Number">
-        {{Nm}}
-      </p>
+
       <p>
         <label >Payment Method</label><b>
         <select id="recipient" v-model="rcp">
@@ -85,18 +76,22 @@
       {{Rd}}
 
     </section>
-    <button type="submit" v-on:click="addToOrder">
+    <button type="submit" v-on:click="addAnOrder">
       <img src="https://www.creativefabrica.com/wp-content/uploads/2020/02/10/Delivery-Logo-Graphics-1-5-580x386.jpg" alt="span" title="burger" style="width: 50px;">
       AddToOrder (for now)
     </button>
   </main>
-
   <hr>
   <footer>
     &copy; Burger site
   </footer>
-  <div id="map" v-on:click="addOrder">
-    click here
+  <div id="mapscroll">
+    <div id="map" v-on:click="addOrder">
+      click here
+      <div id="dotsen" v-bind:style="{ left: location.x + 'px', top: location.y + 'px'}">
+        T
+      </div>
+    </div>
   </div>
 </template>
 
@@ -120,7 +115,6 @@ let Burgers = menu;
   new MenuItem("Blue Burger", "500 calories", "https://www.max.se/globalassets/images/burgers/burgers-frisco-burger.png?width=1160&height=652","gluten:yes", "Lactose: yes"),
   new MenuItem("Green Burger",  "400 calories", "https://www.santamariaworld.com/optimized/maximum/globalassets/_recipes/bbq/kentucky_burger.jpg","gluten:no", "Lactose: no")];
 */
-console.log(Burgers);
 
 
 export default {
@@ -132,13 +126,14 @@ export default {
     return {
       burgers: Burgers,
       fn: "",
-      ln: "",
       em: "",
-      Nm: "",
       rcp: "",
       Rd: "",
-      OrderedBurgers: {}
-
+      orderedBurgers: {},
+      location: {
+        x: 0,
+        y: 0
+      }
 
               /*[ {name: "small burger", kCal: 250},
                  {name: "standard burger", kCal: 450},
@@ -162,14 +157,24 @@ export default {
               y: event.clientY - 10 - offset.y
             },
             orderItems: ["Beans", "Curry"]
-          }
+          },
       );
+      this.location = {
+        x: event.clientX - 10 - offset.x,
+        y: event.clientY - 10 - offset.y
+      }
+
+      console.log(this.location)
     },
     addToOrder: function (event) {
-      console.log(this.fn, this.ln, this.em, this.Nm, this.rcp, this.Rd, this.OrderedBurgers)
-      this.OrderedBurgers[event.name] = event.amount;
+      this.orderedBurgers[event.name] = event.amount;
+      console.log(this.orderedBurgers);
+     },
+    addAnOrder: function () {
+      console.log()
+
+      }
     }
-  }
 }
 </script>
 
@@ -183,9 +188,13 @@ body {
 }
 
 #map {
-  width: 300px;
-  height: 300px;
-  background-color: red;
+  position: relative;
+  width: 1920px;
+  height: 1078px;
+  background: url("/img/polacks.jpg");
+}
+#mapscroll{
+  overflow:scroll;
 }
 .allergi{
   color: #ff5500;
@@ -232,6 +241,15 @@ section {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 200px 200px 200px;
+}
+#dotsen {
+  position: absolute;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  width:20px;
+  height:20px;
+  text-align: center;
 }
 
 

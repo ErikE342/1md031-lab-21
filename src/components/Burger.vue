@@ -13,10 +13,10 @@
       </ul>
     </div>
 
-    <button type="submit" v-on:click="addToOrder">
+    <button type="submit" v-on:click="addBurger">
       add burger
     </button>
-    <button type="submit" v-on:click="subOrder">
+    <button type="submit" v-on:click="removeBurger">
       remove burger
     </button>
     <div id="amount">{{amountOrdered}}</div>
@@ -35,16 +35,22 @@ export default {
     }
   },
   methods:{
-    subOrder: function(){
+    removeBurger: function(){
       this.amountOrdered -=1
-      this.$emit('orderedBurger', { name:   this.burger.name,
+      this.$emit(
+          'orderedBurger',
+          {
+            name:   this.burger.Name,
             amount: this.amountOrdered
           }
       );
     },
-    addToOrder: function () {
+    addBurger: function () {
       this.amountOrdered += 1;
-      this.$emit('orderedBurger', { name:   this.burger.name,
+      this.$emit(
+          'orderedBurger',
+          {
+            name:   this.burger.Name,
             amount: this.amountOrdered
           }
       );
