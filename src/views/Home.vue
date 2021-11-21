@@ -153,7 +153,7 @@ export default {
               y: this.location.y,
             },
             orderItems: [this.orderedBurgers],
-            PersonalInfo: ["Name:"+this.fn, "Mail:"+this.em, "Payment:"+this.rcp, "Gender"+this.Rd]
+            PersonalInfo: [this.fn, this.em, this.rcp, this.Rd]
           },
       );
       console.log("Order sent to dispatcher")
