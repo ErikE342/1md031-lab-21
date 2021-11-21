@@ -34,12 +34,10 @@
       <p>
         <label for="firstname">First and Last</label><br>
         <input type="text" id="firstname" v-model="fn" required="required" placeholder="First name and Last name">
-        {{fn}}
       </p>
       <p>
         <label for="email">Mail</label><br>
         <input type="email" id="email" v-model="em" required="required" placeholder="E-mail address">
-        {{em}}
       </p>
 
       <p>
@@ -50,7 +48,6 @@
           <option>Swish</option>
           <option>Credit card</option>
         </select>
-        {{rcp}}
       </b>
       </p>
       <p>
@@ -73,12 +70,11 @@
         Non-Binary
         <input type="radio" id="Non-Binary" v-model="Rd"  name="GenderButton" value="Non-Binary">
       </p>
-      {{Rd}}
 
     </section>
-    <button type="submit" v-on:click="addAnOrder">
+    <button type="submit" v-on:click="addOrder">
       <img src="https://www.creativefabrica.com/wp-content/uploads/2020/02/10/Delivery-Logo-Graphics-1-5-580x386.jpg" alt="span" title="burger" style="width: 50px;">
-      AddToOrder (for now)
+      Place Order
     </button>
   </main>
   <hr>
@@ -86,7 +82,7 @@
     &copy; Burger site
   </footer>
   <div id="mapscroll">
-    <div id="map" v-on:click="addOrder">
+    <div id="map" v-on:click="setLocation">
       click here
       <div id="dotsen" v-bind:style="{ left: location.x + 'px', top: location.y + 'px'}">
         T
@@ -143,37 +139,40 @@ export default {
   },
   methods: {
     getOrderNumber: function () {
-      return Math.floor(Math.random() * 100000);
+      return Math.floor(Math.random() * 1000);
     },
-    addOrder: function (event) {
+    addOrder: function () {
+      /*var offset = {
+        x: event.currentTarget.getBoundingClientRect().left,
+        y: event.currentTarget.getBoundingClientRect().top
+      };*/
+      socket.emit("addOrder", {
+            orderId: this.getOrderNumber(),
+            details: {
+              x: this.location.x,
+              y: this.location.y,
+            },
+            orderItems: [this.orderedBurgers],
+            PersonalInfo: ["Name:"+this.fn, "Mail:"+this.em, "Payment:"+this.rcp, "Gender"+this.Rd]
+          },
+      );
+      console.log("Order sent to dispatcher")
+    },
+    setLocation: function (event) {
       var offset = {
         x: event.currentTarget.getBoundingClientRect().left,
         y: event.currentTarget.getBoundingClientRect().top
       };
-      socket.emit("addOrder", {
-            orderId: this.getOrderNumber(),
-            details: {
-              x: event.clientX - 10 - offset.x,
-              y: event.clientY - 10 - offset.y
-            },
-            orderItems: ["Beans", "Curry"]
-          },
-      );
       this.location = {
         x: event.clientX - 10 - offset.x,
         y: event.clientY - 10 - offset.y
       }
-
-      console.log(this.location)
+      console.log("set new location")
     },
     addToOrder: function (event) {
       this.orderedBurgers[event.name] = event.amount;
       console.log(this.orderedBurgers);
-     },
-    addAnOrder: function () {
-      console.log()
-
-      }
+     }
     }
 }
 </script>
